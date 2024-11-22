@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Docentes</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Agregar Docentes</h1>
+      <input type="text" id="nombre" placeholder="Nombre" class="form-control"><br>
+      <input type="text" id="apellido" placeholder="Apellido" class="form-control"><br>
+      <input type="text" id="materia" placeholder="Materia" class="form-control"><br>
+      <button class="btn btn-info" id="boton" onclick="guardar()">Guardar</button> 
+
+      <table class="table my-3">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Materia</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Ver Perfil</th>
+          </tr>
+        </thead>
+        <tbody id="tabla">
+          <!-- Los docentes se mostrarán aquí -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="/JS/docentes.js"></script>
+  </body>
+</html>

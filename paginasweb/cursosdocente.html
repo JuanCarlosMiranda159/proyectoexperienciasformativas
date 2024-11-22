@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión del Docente Certus</title>
+    <link rel="stylesheet" href="/CSS/estilosindedx.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Estilo para cursos completados */
+        .completado {
+            background-color: #4caf50; /* Color verde para indicar completado */
+            color: white;
+        }
+
+        /* Estilo para las tarjetas de cursos */
+        .curso {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .curso:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 font-sans">
+    <!-- Enlace del nombre en la esquina superior izquierda -->
+    <header class="relative top-0 left-0 z-10 p-6">
+        <a href="perfil.html" class="flex items-center text-white font-semibold text-lg hover:text-gray-200 transition duration-300">
+            <img src="icono.png" alt="Icono del profesor" class="w-10 h-10 rounded-full mr-3 shadow-md">
+            Profesor Juan Carlos Pampamallco
+        </a>
+        <button id="redirigirBtn" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 mt-6 mx-auto block shadow-lg">
+            Ir a Página Principal
+        </button>
+    </header>
+
+    <!-- Botón de "Cerrar sesión" en la parte superior derecha -->
+    <button id="cerrarSesionBtn" class="absolute top-6 right-6 bg-white text-black px-5 py-2 rounded-lg hover:bg-red-600 transition duration-300 z-10">
+        Cerrar sesión
+    </button>
+
+    <!-- Contenedor principal con margen superior suficiente para no superponer el encabezado -->
+    <main class="p-8 sm:p-12 bg-blue-500 flex flex-col items-center justify-start mt-20 text-white">
+        <!-- Título de la sección de cursos -->
+        <h2 class="text-white text-3xl sm:text-4xl font-bold mb-12 text-center">
+            Cursos Institucionales 2024
+        </h2>
+        
+        <!-- Sección de Cursos 1er Mes -->
+        <section class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 mb-16">
+            <h3 class="text-white text-2xl font-bold mb-6 text-center">Cursos - Enero - Marzo</h3>
+            <!-- Curso 1 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="1">
+                Gestión del Aula Digital y Herramientas Educativas
+            </a>
+            <!-- Curso 2 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="2">
+                Liderazgo Educativo en Entornos Tecnológicos
+            </a>
+            <!-- Curso 3 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="3">
+                Técnicas de Enseñanza Activas y Colaborativas
+            </a>
+            <!-- Curso 4 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="4">
+                Diseño de Materiales Educativos Interactivos
+            </a>
+        </section>
+
+        <!-- Sección de Cursos 2do Mes -->
+        <section class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 mb-16">
+            <h3 class="text-white text-2xl font-bold mb-6 text-center">Abril - Junio</h3>
+            <!-- Curso 5 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="5">
+                Educación Inclusiva y Adaptativa
+            </a>
+            <!-- Curso 6 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="6">
+                Uso Pedagógico de Herramientas Digitales
+            </a>
+            <!-- Curso 7 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="7">
+                Gamificación en el Aula
+            </a>
+            <!-- Curso 8 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="8">
+                Comunicación Eficaz y Manejo de Conflictos en el Aula
+            </a>
+        </section>
+
+        <!-- Sección de Cursos 3er Mes -->
+        <section class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 mb-16">
+            <h3 class="text-white text-2xl font-bold mb-6 text-center">Julio - Agosto</h3>
+            <!-- Curso 9 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="9">
+                Desarrollo de Habilidades Socioemocionales para Educadores
+            </a>
+            <!-- Curso 10 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="10">
+                Evaluación del Aprendizaje con Herramientas Digitales
+            </a>
+            <!-- Curso 11 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="11">
+                Retroalimentación Constructiva en Ambientes Virtuales
+            </a>
+            <!-- Curso 12 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="12">
+                Innovación Educativa y Diseño de Experiencias de Aprendizaje
+            </a>
+        </section>
+
+        <!-- Sección de Cursos 4to Mes -->
+        <section class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 mb-16">
+            <h3 class="text-white text-2xl font-bold mb-6 text-center">Septiembre - Octubre</h3>
+            <!-- Curso 13 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="13">
+                Desarrollo Profesional Docente y Gestión del Tiempo
+            </a>
+            <!-- Curso 14 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="14">
+                Diseño Curricular Basado en Competencias
+            </a>
+            <!-- Curso 15 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="15">
+                Integración de TIC en la Administración Educativa
+            </a>
+            <!-- Curso 16 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="16">
+                Aplicaciones de Inteligencia Artificial en la Educación
+            </a>
+            <!-- Curso 17 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="17">
+                Educación Multicultural y Gestión de Diversidad
+            </a>
+        </section>
+        
+        <!-- Sección de Cursos Adicionales -->
+        <section class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+            <h3 class="text-white text-2xl font-bold mb-6 text-center">Noviembre - Diciembre</h3>
+            <!-- Curso 18 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="18">
+                Evaluación de Competencias en el Aula Virtual
+            </a>
+            <!-- Curso 19 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="19">
+                Metodologías de Aprendizaje para la Educación Superior
+            </a>
+            <!-- Curso 20 -->
+            <a href="#" class="curso bg-white text-blue-600 p-8 rounded-lg text-center font-semibold text-xl hover:bg-gray-100 shadow-md transition duration-300" data-curso="20">
+                Estrategias de Motivación y Compromiso Estudiantil
+            </a>
+        </section>
+
+    </main>
+
+    <script src="/JS/cursosinstitucionales.js"></script>
+</body>
+
+</html>

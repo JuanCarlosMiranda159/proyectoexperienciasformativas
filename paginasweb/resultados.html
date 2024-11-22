@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Examen Médico</title>
+    <link rel="stylesheet" href="/CSS/estilosindedx.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+
+    <!-- Cabecera -->
+    <header class="bg-blue-600 text-white p-4 w-full shadow-md">
+        <div class="flex items-center justify-center">
+            <img src="icono.png" alt="Icono del profesor" class="w-10 h-10 rounded-full mr-3">
+            <span class="font-bold text-lg">Profesor Juan Carlos Pampamallco</span>
+        </div>
+    </header>
+
+    <!-- Tabla de Resultados -->
+    <main class="w-full max-w-3xl p-6 mt-6">
+        <h1 class="text-2xl font-bold text-blue-600 mb-4 text-center">Resultados Examen Médico</h1>
+        
+        <!-- Contenedor de la tabla -->
+        <div id="tabla" class="space-y-4">
+            <!-- Los resultados serán insertados aquí dinámicamente -->
+        </div>
+    </main>
+
+    <!-- Tabla de Examen Físico -->
+    <main class="w-full max-w-3xl p-6 mt-6 p-3">
+        <h1 class="text-2xl font-bold text-blue-600 mb-4 text-center">Resultados Examen Físico</h1>
+        
+        <!-- Contenedor de la tabla -->
+        <div id="tabla2" class="space-y-4">
+            <!-- Los resultados serán insertados aquí dinámicamente -->
+        </div>
+    </main>
+    
+    <!-- Scripts de Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+
+
+    <script type="module" src="/JS/firebaseConfig.js"></script>
+
+    <!-- Importar los scripts de resultados -->
+    <script type="module" src="/JS/resultados.js"></script>
+    <script type="module" src="/JS/resultados2.js"></script>
+
+</body>
+
+</html>

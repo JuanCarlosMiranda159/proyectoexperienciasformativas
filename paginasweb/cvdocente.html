@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Médico</title>
+    <link rel="stylesheet" href="/CSS/estilosindedx.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+    <!-- Cabecera -->
+    <header class="bg-blue-600 text-white w-full p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="icono.png" alt="Icono del profesor" class="w-10 h-10 rounded-full mr-3">
+            <span class="font-bold text-lg">Profesor Juan Carlos Pampamallco</span>
+        </div>
+        <button id="cerrarSesionBtn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+            Cerrar sesión
+        </button>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="p-6 w-full max-w-4xl">
+        <!-- Formulario de Examen Médico -->
+        <section class="bg-white p-6 shadow-md rounded-lg mx-auto">
+            <h1 class="text-2xl font-bold text-blue-600 text-center mb-6">mi historial</h1>
+            <div class="space-y-4">
+                <input type="text" id="nombre" placeholder="Nombre" class="w-full p-3 border rounded">
+                <input type="text" id="apellido" placeholder="Apellido" class="w-full p-3 border rounded">
+                <input type="number" id="edad" placeholder="Edad" class="w-full p-3 border rounded">
+                <input type="text" id="direccion" placeholder="Dirección" class="w-full p-3 border rounded">
+                <input type="text" id="telefono" placeholder="Teléfono" class="w-full p-3 border rounded">
+                <input type="email" id="correo" placeholder="Correo" class="w-full p-3 border rounded">
+                <input type="text" id="linkedin" placeholder="LinkedIn" class="w-full p-3 border rounded">
+                <input type="text" id="perfil_profesional" placeholder="Perfil Profesional" class="w-full p-3 border rounded">
+                <input type="text" id="formacion_academica" placeholder="Formación Académica" class="w-full p-3 border rounded">
+                <input type="text" id="experiencia_profesional" placeholder="Experiencia Profesional" class="w-full p-3 border rounded">
+                <input type="text" id="habilidades_tecnicas" placeholder="Habilidades Técnicas" class="w-full p-3 border rounded">
+                <input type="text" id="certificaciones" placeholder="Certificaciones" class="w-full p-3 border rounded">
+                <input type="text" id="publicaciones" placeholder="Publicaciones" class="w-full p-3 border rounded">
+                <input type="text" id="idiomas" placeholder="Idiomas" class="w-full p-3 border rounded">
+                <input type="text" id="referencias" placeholder="Referencias" class="w-full p-3 border rounded">
+
+                <button class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700 transition" id="boton" onclick="guardar()">Guardar</button>
+            </div>
+        </section>
+
+        <!-- Tabla de Resultados -->
+        <section class="mt-10 bg-white p-6 shadow-md rounded-lg">
+            <h2 class="text-2xl font-bold text-blue-600 text-center mb-6">Resultados</h2>
+            <div id="tabla" class="space-y-4"></div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+    <script src="/JS/cvdocente.js"></script>
+</body>
+
+</html>
