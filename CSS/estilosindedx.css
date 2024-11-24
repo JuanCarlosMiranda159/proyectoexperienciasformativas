@@ -6,8 +6,7 @@
 .bg-gray-100{
     background-color:#0e2d6d !important;
 }
-/* Estilo para cursos completados */
-.completado {
-    background-color: #4caf50; /* Color verde para indicar completado */
-    color: white;
+.bg-opacity-50{
+    background-color:#0e2d6d !important;
+
 }

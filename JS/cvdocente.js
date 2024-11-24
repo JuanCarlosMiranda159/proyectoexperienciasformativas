@@ -157,3 +157,14 @@ document.getElementById("cerrarSesionBtn").addEventListener("click", function() 
     // Redirigir a la página de inicio de sesión
     window.location.href = "login.html";
 });
+
+ // Obtén el botón por su ID
+ const redirigirBtn = document.getElementById('redirigirBtn');
+
+ // Añade el evento de clic al botón
+ redirigirBtn.addEventListener('click', function () {
+     // Redirige a la página deseada cuando el botón es clickeado
+     window.location.href = '/paginasweb/gestiondocente.html'; // Aquí pones la URL de la página a la que deseas redirigir
+ });
+
+

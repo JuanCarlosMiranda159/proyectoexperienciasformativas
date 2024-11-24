@@ -9,14 +9,12 @@ const firebaseConfig = {
     measurementId: "G-WETFYZ3PST",
 };
 
-
 // Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
 
 // Inicializar Firestore
 const db = firebase.firestore();
 
-// Función para guardar nuevos docentes
 // Función para guardar nuevos docentes
 function guardar() {
     var nombre = document.getElementById('nombre').value;
@@ -46,8 +44,6 @@ function guardar() {
 }
 
 // Función para mostrar la lista de docentes en la tabla
-// Función para mostrar la lista de docentes en la tabla
-// Función para mostrar la lista de docentes en la tabla
 function mostrarTabla() {
     var tabla = document.getElementById('tabla');
     tabla.innerHTML = ''; // Limpiar la tabla antes de agregar los nuevos datos
@@ -67,7 +63,7 @@ function mostrarTabla() {
             console.log(`${doc.id} => ${doc.data().first}`);
 
             // Generamos el enlace dinámico con el ID del docente en la URL
-            const enlace = `<a href="/paginaweb/docentes.html=${doc.id}" id="${doc.id}" class="btn btn-info">Ver Perfil</a>`;
+            const enlace = `<button onclick="verPerfil('${doc.id}')" class="btn btn-info">Ver Perfil</button>`;
 
             // Agregar los datos a la tabla
             tabla.innerHTML += `
@@ -78,14 +74,17 @@ function mostrarTabla() {
                 <td>${doc.data().subject}</td>
                 <td><button class="btn btn-danger" onclick="eliminar('${doc.id}')">Eliminar</button></td>
                 <td><button class="btn btn-warning" onclick="editar('${doc.id}','${doc.data().first}','${doc.data().last}','${doc.data().subject}')">Editar</button></td>
-                <td>${enlace}</td> <!-- Enlace para ver el perfil -->
+                <td>${enlace}</td> <!-- Botón para ver el perfil -->
             </tr>`;
         });
     });
 }
 
-
-
+// Función para ver el perfil del docente
+function verPerfil(id) {
+    // Redirige a la página de perfil, pasando el ID como parámetro en la URL
+    window.location.href = `/paginasweb/administradorexamen.html?id=${id}`;
+}
 
 // Función para eliminar un docente
 function eliminar(id) {

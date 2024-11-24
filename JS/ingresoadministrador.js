@@ -49,7 +49,7 @@ async function iniciarSesion() {
 
                 // Redirigir a la página de administración después de 2 segundos
                 setTimeout(() => {
-                    window.location.href = "/paginasweb/gestiondocente.html"; // Redirigir al panel de administración
+                    window.location.href = "/paginasweb/docentes.html"; // Redirigir al panel de administración
                 }, 2000); // Espera 2 segundos para mostrar el mensaje de éxito
             } else {
                 console.log("Contraseña incorrecta");
