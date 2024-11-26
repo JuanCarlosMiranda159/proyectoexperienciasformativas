@@ -12,9 +12,9 @@
 <body class="bg-blue-500">
     <!-- Enlace del nombre en la esquina superior izquierda -->
     <header class="absolute top-4 left-4">
-        <a href="perfil.html" class="flex items-center text-white font-medium text-sm sm:text-base hover:text-gray-200">
+        <a href="perfil.html" id="nombreProfesor" class="flex items-center text-white font-medium text-sm sm:text-base hover:text-gray-200">
             <img src="icono.png" alt="Icono del profesor" class="w-8 h-8 rounded-full mr-2">
-            Profesor Juan Carlos Pampamallco
+             <!-- Este texto será actualizado con los datos del usuario -->
         </a>
     </header>
 
@@ -33,14 +33,17 @@
                 Cursos institucionales
             </a>
             <a href="/paginasweb/cvdocente.html" class="bg-white text-blue-600 p-8 rounded-lg text-center font-bold text-2xl hover:bg-gray-200 shadow-lg transition duration-200">
-                actualizacion de mis Cursos 
+                Actualización de mis Cursos
             </a>
             <a href="/paginasweb/encuestaalumno.html" class="bg-white text-blue-600 p-8 rounded-lg text-center font-bold text-2xl hover:bg-gray-200 shadow-lg transition duration-200">
-                encuesta alumno y sugerencias
+                Encuesta alumno y sugerencias
             </a>
         </section>
     </main>
 
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
     <script src="/JS/gestiondocente.js"></script>
 </body>
 

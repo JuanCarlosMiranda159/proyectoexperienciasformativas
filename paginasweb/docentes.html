@@ -1,40 +1,44 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Docentes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <title>Gestión de Docentes</title>
   </head>
   <body>
-    <div class="container mt-5">
-      <h1>Agregar Docentes</h1>
+    <div class="container">
+      <h1>Agregar y Gestionar Usuarios</h1>
+
+      <!-- Formulario para agregar o editar usuario -->
       <input type="text" id="nombre" placeholder="Nombre" class="form-control"><br>
       <input type="text" id="apellido" placeholder="Apellido" class="form-control"><br>
-      <input type="text" id="materia" placeholder="Materia" class="form-control"><br>
-      <button class="btn btn-info" id="boton" onclick="guardar()">Guardar</button> 
+      <input type="date" id="fecha" placeholder="Fecha de nacimiento" class="form-control"><br>
+      <input type="email" id="correo" placeholder="Correo electrónico" class="form-control"><br>
+      <input type="password" id="contraseña" placeholder="Contraseña" class="form-control"><br>
+      <button class="btn btn-info" id="boton" onclick="guardar()">Guardar</button>
 
+      <!-- Tabla para mostrar los usuarios -->
       <table class="table my-3">
         <thead>
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col">Id</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
-            <th scope="col">Materia</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Correo</th>
             <th scope="col">Eliminar</th>
             <th scope="col">Editar</th>
-            <th scope="col">Ver Perfil</th>
           </tr>
         </thead>
         <tbody id="tabla">
-          <!-- Los docentes se mostrarán aquí -->
+          <!-- Los usuarios se mostrarán aquí -->
         </tbody>
       </table>
     </div>
 
-    <script src="/JS/docentes.js"></script>
+    <!-- Firebase y lógica de app -->
+    <script type="module" src="/JS/docentes.js"></script> <!-- Asegúrate de usar el tipo module -->
   </body>
 </html>

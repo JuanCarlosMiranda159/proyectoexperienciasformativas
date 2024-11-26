@@ -1,6 +1,7 @@
 // Importar Firebase y Firestore
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth();
 
 // Función de inicio de sesión
 async function iniciarSesion() {
@@ -26,16 +28,20 @@ async function iniciarSesion() {
     console.log("Contraseña ingresada: ", password);
 
     try {
-        // Realizar la consulta en Firestore para buscar el usuario
-        const q = query(collection(db, "usuarios"), where("usuario", "==", usuario));
+        // Autenticar al usuario con Firebase Auth
+        const userCredential = await signInWithEmailAndPassword(auth, usuario, password);
+        const user = userCredential.user;
+
+        // Si la autenticación fue exitosa, obtener más detalles desde Firestore
+        const q = query(collection(db, "docentes"), where("correo", "==", usuario));
         const docSnapshot = await getDocs(q);
 
         if (!docSnapshot.empty) {
             const usuarioData = docSnapshot.docs[0].data();
             console.log("Datos del usuario: ", usuarioData);
 
-            // Verificar si la contraseña coincide
-            if (usuarioData.password === password) {
+            // Verificar si la contraseña coincide (aunque ya se validó en Firebase)
+            if (usuarioData.correo === user.email) {
                 console.log("Inicio de sesión exitoso");
 
                 // Mostrar mensaje de éxito
@@ -52,11 +58,11 @@ async function iniciarSesion() {
                     window.location.href = "/paginasweb/gestiondocente.html"; // Cambia esto a la página de destino
                 }, 2000); // Espera 2 segundos para mostrar el mensaje de éxito
             } else {
-                console.log("Contraseña incorrecta");
-                alert("Contraseña incorrecta");
+                console.log("Datos incorrectos.");
+                alert("Contraseña o correo incorrectos.");
             }
         } else {
-            console.log("El usuario no está registrado");
+            console.log("El usuario no está registrado en Firestore.");
             alert("Usuario no registrado.");
         }
     } catch (error) {
