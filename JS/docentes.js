@@ -65,6 +65,11 @@ window.guardar = function() {
       })
       .then(() => {
         console.log("Usuario agregado con éxito!");
+        
+        // Guardar nombre y apellido en localStorage
+        localStorage.setItem("nombre", nombre);
+        localStorage.setItem("apellido", apellido);
+
         // Limpiar los campos
         document.getElementById('nombre').value = '';
         document.getElementById('apellido').value = '';
@@ -102,74 +107,75 @@ onSnapshot(collection(db, "docentes"), (querySnapshot) => {
 });
 
 // Función para eliminar usuario
-function eliminar(id) {
-  getDoc(doc(db, "docentes", id)).then((docSnap) => {
-    if (docSnap.exists()) {
-      const usuarioId = docSnap.data().usuarioId;
-      const user = auth.currentUser;
-
-      if (user && user.uid === usuarioId) {
-        deleteUser(user)
-          .then(() => {
-            console.log("Usuario eliminado de Firebase Authentication.");
-            // Eliminar el documento en Firestore
-            deleteDoc(doc(db, "docentes", id))
-              .then(() => {
-                console.log("Usuario eliminado de Firestore.");
-              })
-              .catch((error) => {
-                console.error("Error al eliminar el documento en Firestore: ", error);
-              });
-          })
-          .catch((error) => {
-            console.error("Error al eliminar el usuario en Firebase Authentication: ", error);
-          });
-      }
-    }
-  });
+window.eliminar = function(id) {
+  const docRef = doc(db, "docentes", id);
+  deleteDoc(docRef)
+    .then(() => {
+      console.log("Usuario eliminado de Firestore.");
+    })
+    .catch((error) => {
+      console.error("Error al eliminar el documento de Firestore:", error);
+    });
 }
 
 // Función para editar datos del usuario
-function editar(id, nombre, apellido, fecha, correo) {
+// Función para editar datos del usuario
+window.editar = function(id, nombre, apellido, fecha, correo) {
+  // Asignamos los valores a los campos de entrada
   document.getElementById('nombre').value = nombre;
   document.getElementById('apellido').value = apellido;
   document.getElementById('fecha').value = fecha;
   document.getElementById('correo').value = correo;
 
+  // Cambiar el texto del botón a "Actualizar"
   var boton = document.getElementById('boton');
-  boton.innerHTML = 'Editar';
+  boton.innerHTML = 'Actualizar';
 
+  // Cambiar la función del botón a actualización
   boton.onclick = function() {
+    // Obtener los nuevos valores de los campos de entrada
+    var nuevoNombre = document.getElementById('nombre').value;
+    var nuevoApellido = document.getElementById('apellido').value;
+    var nuevaFecha = document.getElementById('fecha').value;
+    var nuevoCorreo = document.getElementById('correo').value;
+
     var washingtonRef = doc(db, "docentes", id);
 
-    var nombre = document.getElementById('nombre').value;
-    var apellido = document.getElementById('apellido').value;
-    var fecha = document.getElementById('fecha').value;
-    var correo = document.getElementById('correo').value;
-
-    // Actualizar datos en Firestore
+    // Actualizar los datos en Firestore
     updateDoc(washingtonRef, {
-      first: nombre,
-      last: apellido,
-      born: fecha,
-      correo: correo
+      first: nuevoNombre,
+      last: nuevoApellido,
+      born: nuevaFecha,
+      correo: nuevoCorreo
     })
     .then(() => {
-      // Si el correo cambia, actualizar también en Firebase Authentication
-      const user = auth.currentUser;
+      console.log("Datos actualizados en Firestore");
 
-      if (user && user.email !== correo) {
-        updateEmail(user, correo)
+      // Si el correo ha cambiado, actualizamos también en Firebase Authentication
+      const user = auth.currentUser;
+      if (user && user.email !== nuevoCorreo) {
+        // Si el correo ha cambiado, actualizamos el correo en Firebase Authentication
+        updateEmail(user, nuevoCorreo)
           .then(() => {
-            console.log("Correo electrónico actualizado.");
+            console.log("Correo electrónico actualizado en Firebase Authentication.");
           })
           .catch((error) => {
             console.error("Error al actualizar el correo en Firebase Authentication: ", error);
           });
       }
+
+      // Restaurar el botón a "Guardar" después de la actualización
+      boton.innerHTML = 'Guardar';
+      boton.onclick = guardar;  // Restablecer la acción original de guardar
+
+      // Limpiar los campos (opcional)
+      document.getElementById('nombre').value = '';
+      document.getElementById('apellido').value = '';
+      document.getElementById('fecha').value = '';
+      document.getElementById('correo').value = '';
     })
     .catch((error) => {
       console.error("Error al actualizar los datos en Firestore: ", error);
     });
   };
-}
+};
