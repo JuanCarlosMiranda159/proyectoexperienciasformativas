@@ -159,4 +159,26 @@ function editar(id, nombre, apellido, edad, peso, memoria, atencion, inteligenci
     window.location.href = "/index.html";
 });
 
+ // Obtén el botón por su ID
+ const redirigirBtn = document.getElementById('redirigirBtn');
+
+ // Añade el evento de clic al botón
+ redirigirBtn.addEventListener('click', function () {
+     // Redirige a la página deseada cuando el botón es clickeado
+     window.location.href ="/paginasweb/administradorxamen2.html"; // Aquí pones la URL de la página a la que deseas redirigir
+ });
+
+
+
+ // Obtén el botón por su ID
+ const cursosdocente = document.getElementById('cursosdocente');
+
+ // Añade el evento de clic al botón
+ cursosdocente.addEventListener('click', function () {
+     // Redirige a la página deseada cuando el botón es clickeado
+     window.location.href ="/paginasweb/cursosdocente.html"; // Aquí pones la URL de la página a la que deseas redirigir
+ });
+
+
+
 

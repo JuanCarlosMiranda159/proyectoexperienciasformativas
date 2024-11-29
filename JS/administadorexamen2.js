@@ -182,3 +182,34 @@ function editar(id, nombre, apellido, edad, peso, valoracionGeneralSalud,medicio
 });
 
 
+
+ // Obtén el botón por su ID
+ const redirigirBtn = document.getElementById('redirigirBtn');
+
+ // Añade el evento de clic al botón
+ redirigirBtn.addEventListener('click', function () {
+     // Redirige a la página deseada cuando el botón es clickeado
+     window.location.href ="/paginasweb/administradorexamen3.html"; 
+ });
+ // Obtén el botón por su ID
+ const examen1 = document.getElementById('examen1');
+
+ // Añade el evento de clic al botón
+ examen1.addEventListener('click', function () {
+     // Redirige a la página deseada cuando el botón es clickeado
+     window.location.href ="/paginasweb/administradorexamen.html"; 
+ });
+
+  // Obtén el botón por su ID
+  const dvdocente = document.getElementById('dvdocente');
+
+  // Añade el evento de clic al botón
+  dvdocente.addEventListener('click', function () {
+      // Redirige a la página deseada cuando el botón es clickeado
+      window.location.href ="/paginasweb/resultadoscv.html";
+  });
+ 
+ 
+ 
+
+

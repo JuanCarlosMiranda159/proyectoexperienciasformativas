@@ -16,12 +16,15 @@
         <div class="flex items-center justify-between container mx-auto">
             <div class="flex items-center">
                 <img src="icono.png" alt="Icono del profesor" class="w-14 h-14 rounded-full mr-3">
-                <span id="nombreProfesor" class="text-3xl text-blue-500">Cargando...</span> <!-- Aquí se mostrará el nombre y apellido -->
+                <span id="nombreProfesor" class="text-3xl text-blue-500">Cargando...</span> <!-- Nombre y apellido del profesor -->
             </div>
-            <!-- Navegación (opcional) -->
-            <nav class="flex flex-col items-center space-y-4">
-                <button id="redirigirBtn" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
-                    Ir a Página Principal
+            <!-- Navegación con botones en fila -->
+            <nav class="flex items-center space-x-4"> <!-- Cambié space-y-4 por space-x-4 -->
+                <button id="examen1" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
+                    Examen Psicológico
+                </button>
+                <button id="redirigirBt" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
+                    Examen Físico
                 </button>
                 <button id="cerrarSesionBtn" class="bg-white text-black px-4 py-2 rounded-md hover:bg-red-600 transition duration-200">
                     Cerrar sesión
@@ -35,23 +38,9 @@
 
         <!-- Examen Psicológico -->
         <section class="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Resultados Examen Psicológico</h1>
-            <div id="tabla" class="space-y-4">
-                <!-- Los resultados serán insertados aquí dinámicamente -->
-            </div>
-        </section>
-
-        <!-- Examen Físico -->
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Resultados Examen Físico</h1>
-            <div id="tabla2" class="space-y-4">
-                <!-- Los resultados serán insertados aquí dinámicamente -->
-            </div>
-        </section>
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Resultados Examen sangre</h1>
+            <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Curriculum Docente</h1>
             <div id="tabla3" class="space-y-4">
-                <!-- Los resultados serán insertados aquí dinámicamente -->
+                <!-- Los resultados serán insertados dinámicamente aquí -->
             </div>
         </section>
 
@@ -62,10 +51,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
     <script type="module" src="/JS/firebaseConfig.js"></script>
 
-    <!-- Importar los scripts de resultados -->
-    <script type="module" src="/JS/resultados.js"></script>
-    <script type="module" src="/JS/resultados2.js"></script>
-    <script type="module" src="/JS/resultados3.js"></script>
+    <!-- Scripts de Resultados -->
+    <script type="module" src="/JS/resultadoscv.js"></script>
 
 </body>
 

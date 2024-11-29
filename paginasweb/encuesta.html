@@ -4,133 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuesta Docente</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+    <title>Resultados Encuesta Docente</title>
+    <link rel="stylesheet" href="/CSS/estilosindedx.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
 </head>
 
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-blue-500">
+    <header class="absolute top-4 left-4">
+        <span id="nombreProfesor" class="text-3xl text-white">Resultados Evaluación Docente</span>
+    </header>
 
-    <div class="w-full max-w-lg p-6 bg-white rounded-lg shadow-lg">
-        <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Encuesta para Calificación del Docente</h2>
-        
-        <!-- Formulario de Encuesta -->
-        <form id="encuestaForm" class="space-y-6">
-            <!-- Pregunta 1 -->
-            <div>
-                <label class="block font-medium text-gray-600">1. Puntualidad:</label>
-                <div class="flex items-center space-x-4 mt-2">
-                    <input type="radio" name="puntualidad" value="1" class="text-blue-500">
-                    <input type="radio" name="puntualidad" value="2" class="text-blue-500">
-                    <input type="radio" name="puntualidad" value="3" class="text-blue-500">
-                    <input type="radio" name="puntualidad" value="4" class="text-blue-500">
-                    <input type="radio" name="puntualidad" value="5" class="text-blue-500">
-                </div>
+    <main class="p-10 bg-blue-100 flex flex-col items-center justify-center">
+        <section class="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-blue-600 mb-6 text-center"></h1>
+
+            <div id="resultados">
+                <p id="resultadoPuntualidad" class="text-lg text-blue-600"></p>
+                <p id="resultadoDominio" class="text-lg text-blue-600"></p>
+                <p id="resultadoMetodologia" class="text-lg text-blue-600"></p>
+                <p id="resultadoComunicacion" class="text-lg text-blue-600"></p>
+                <p id="resultadoDisponibilidad" class="text-lg text-blue-600"></p>
+                <p id="resultadoEvaluacion" class="text-lg text-blue-600"></p>
+                <p id="resultadoRecomendacion" class="text-lg text-blue-600"></p>
+                <p id="resultadoComentario" class="text-lg text-blue-600"></p>
             </div>
 
-            <!-- Pregunta 2 -->
-            <div>
-                <label class="block font-medium text-gray-600">2. Claridad en la Explicación:</label>
-                <div class="flex items-center space-x-4 mt-2">
-                    <input type="radio" name="claridad" value="1" class="text-blue-500">
-                    <input type="radio" name="claridad" value="2" class="text-blue-500">
-                    <input type="radio" name="claridad" value="3" class="text-blue-500">
-                    <input type="radio" name="claridad" value="4" class="text-blue-500">
-                    <input type="radio" name="claridad" value="5" class="text-blue-500">
-                </div>
-            </div>
+            <button id="cerrarSesionBtn" class="bg-white text-black px-4 py-2 rounded-md hover:bg-red-600 transition duration-200 mt-4">
+                Cerrar sesión
+            </button>
+        </section>
+    </main>
 
-            <!-- Pregunta 3 -->
-            <div>
-                <label class="block font-medium text-gray-600">3. Interacción con los Estudiantes:</label>
-                <div class="flex items-center space-x-4 mt-2">
-                    <input type="radio" name="interaccion" value="1" class="text-blue-500">
-                    <input type="radio" name="interaccion" value="2" class="text-blue-500">
-                    <input type="radio" name="interaccion" value="3" class="text-blue-500">
-                    <input type="radio" name="interaccion" value="4" class="text-blue-500">
-                    <input type="radio" name="interaccion" value="5" class="text-blue-500">
-                </div>
-            </div>
-
-            <!-- Botón de Enviar -->
-            <div class="text-center">
-                <button type="button" onclick="guardarEncuesta()" class="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Enviar Encuesta</button>
-            </div>
-        </form>
-
-        <!-- Respuestas Recibidas -->
-        <h3 class="mt-6 text-xl font-semibold text-gray-700 text-center">Respuestas Recibidas</h3>
-        <div id="tablaEncuestas" class="mt-4 space-y-4">
-            <!-- Aquí se mostrarán las respuestas -->
-        </div>
-    </div>
-
-    <!-- Firebase Script -->
-    <script>
-        // Configuración de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyApIC92oXvNBvXEwZhhA_otz9ZSUOg2D7E",
-            authDomain: "gestiondocente-dece4.firebaseapp.com",
-            projectId: "gestiondocente-dece4",
-            storageBucket: "gestiondocente-dece4.firebasestorage.app",
-            messagingSenderId: "891960766782",
-            appId: "1:891960766782:web:35c6c9397772447d2afc6f",
-            measurementId: "G-WETFYZ3PST",
-        };
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
-
-        // Función para guardar la encuesta en Firebase
-        function guardarEncuesta() {
-            const puntuacionPuntualidad = document.querySelector('input[name="puntualidad"]:checked')?.value;
-            const puntuacionClaridad = document.querySelector('input[name="claridad"]:checked')?.value;
-            const puntuacionInteraccion = document.querySelector('input[name="interaccion"]:checked')?.value;
-
-            // Validación de las respuestas
-            if (!puntuacionPuntualidad || !puntuacionClaridad || !puntuacionInteraccion) {
-                alert("Por favor, responde todas las preguntas.");
-                return;
-            }
-
-            // Objeto con los datos de la encuesta
-            const encuestaData = {
-                puntualidad: puntuacionPuntualidad,
-                claridad: puntuacionClaridad,
-                interaccion: puntuacionInteraccion,
-                fecha: new Date() // Guardamos la fecha en la que se envió la encuesta
-            };
-
-            // Guardar en Firestore
-            db.collection("encuestas").add(encuestaData)
-                .then(() => {
-                    console.log("Encuesta guardada exitosamente");
-                    // Limpiar los inputs
-                    document.getElementById("encuestaForm").reset();
-                })
-                .catch((error) => {
-                    console.error("Error al guardar la encuesta:", error);
-                });
-        }
-
-        // Leer las encuestas desde Firestore
-        const tablaEncuestas = document.getElementById("tablaEncuestas");
-
-        db.collection("encuestas").onSnapshot((querySnapshot) => {
-            tablaEncuestas.innerHTML = "";  // Limpiamos la tabla
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                tablaEncuestas.innerHTML += `
-                    <div class="bg-white p-4 shadow-md rounded-lg">
-                        <h3 class="text-lg font-semibold">ID Encuesta: ${doc.id}</h3>
-                        <p><strong>Puntualidad:</strong> ${data.puntualidad}</p>
-                        <p><strong>Claridad en la Explicación:</strong> ${data.claridad}</p>
-                        <p><strong>Interacción con los Estudiantes:</strong> ${data.interaccion}</p>
-                        <p><strong>Fecha:</strong> ${new Date(data.fecha.seconds * 1000).toLocaleString()}</p>
-                    </div>`;
-            });
-        });
-    </script>
+    <!-- Enlace al archivo JS -->
+    <script src="/JS/resultadosencuesta.js"></script>
 </body>
 
 </html>

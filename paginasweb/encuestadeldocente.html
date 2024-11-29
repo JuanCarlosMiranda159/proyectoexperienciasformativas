@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Alumno - Evaluación Docente</title>
+    <link rel="stylesheet" href="/CSS/estilosindedx.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+</head>
+
+<body class="bg-blue-500">
+    <!-- Cabecera -->
+    <header class="absolute top-4 left-4">
+        <span id="nombreProfesor" class="text-3xl text-white">Evaluación Docente</span>
+    </header>
+
+    <!-- Botones de Navegación -->
+    <div class="absolute top-4 right-4 space-y-4">
+        <button id="examenfisico" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 w-full">
+            Examen Físico
+        </button>
+        <button id="cerrarSesionBtn" class="bg-white text-black px-4 py-2 rounded-md hover:bg-red-600 transition duration-200 w-full">
+            Cerrar sesión
+        </button>
+    </div>
+
+    <main class="h-screen p-5 sm:p-10 bg-blue-500 flex flex-col items-center justify-center">
+        <section class="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-blue-600 mb-6 text-center">Encuesta para la Evaluación del Docente</h1>
+            <form id="encuestaForm" class="space-y-6">
+                <!-- Pregunta 1: Puntualidad -->
+                <div class="flex flex-col">
+                    <label for="puntualidad" class="text-lg text-blue-600 font-semibold">Puntualidad del docente</label>
+                    <select id="puntualidad" class="p-2 border-2 border-gray-300 rounded-md">
+                        <option value="1">Muy deficiente</option>
+                        <option value="2">Deficiente</option>
+                        <option value="3">Aceptable</option>
+                        <option value="4">Bueno</option>
+                        <option value="5">Excelente</option>
+                    </select>
+                </div>
+                <!-- Pregunta 2: Dominio del curso -->
+                <div class="flex flex-col">
+                    <label for="dominioCurso" class="text-lg text-blue-600 font-semibold">Dominio del contenido del curso</label>
+                    <select id="dominioCurso" class="p-2 border-2 border-gray-300 rounded-md">
+                        <option value="1">Muy deficiente</option>
+                        <option value="2">Deficiente</option>
+                        <option value="3">Aceptable</option>
+                        <option value="4">Bueno</option>
+                        <option value="5">Excelente</option>
+                    </select>
+                </div>
+                <!-- Pregunta 3: Metodología de enseñanza -->
+                <div class="flex flex-col">
+                    <label for="metodologia" class="text-lg text-blue-600 font-semibold">Metodología de enseñanza</label>
+                    <select id="metodologia" class="p-2 border-2 border-gray-300 rounded-md">
+                        <option value="1">Muy deficiente</option>
+                        <option value="2">Deficiente</option>
+                        <option value="3">Aceptable</option>
+                        <option value="4">Bueno</option>
+                        <option value="5">Excelente</option>
+                    </select>
+                </div>
+                <!-- Pregunta 4: Comunicación con los estudiantes -->
+                <div class="flex flex-col">
+                    <label for="comunicacion" class="text-lg text-blue-600 font-semibold">Comunicación con los estudiantes</label>
+                    <select id="comunicacion" class="p-2 border-2 border-gray-300 rounded-md">
+                        <option value="1">Muy deficiente</option>
+                        <option value="2">Deficiente</option>
+                        <option value="3">Aceptable</option>
+                        <option value="4">Bueno</option>
+                        <option value="5">Excelente</option>
+                    </select>
+                </div>
+                <!-- Pregunta 5: Disponibilidad para resolver dudas -->
+                <div class="flex flex-col">
+                    <label for="disponibilidad" class="text-lg text-blue-600 font-semibold">Disponibilidad para resolver dudas</label>
+                    <select id="disponibilidad" class="p-2 border-2 border-gray-300 rounded-md">
+                        <option value="1">Muy deficiente</option>
+                        <option value="2">Deficiente</option>
+                        <option value="3">Aceptable</option>
+                        <option value="4">Bueno</option>
+                        <option value="5">Excelente</option>
+                    </select>
+                </div>
+                <!-- Pregunta 6: Evaluación general del docente -->
+                <div class="flex flex-col">
+                    <label for="evaluacionGeneral" class="text-lg text-blue-600 font-semibold">Evaluación general del docente</label>
+                    <input type="range" id="evaluacionGeneral" min="1" max="5" value="3" class="w-full h-2 bg-blue-300 rounded-md">
+                    <div class="flex justify-between">
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </div>
+                </div>
+                <!-- Pregunta 7: ¿Recomendarías este docente a otros estudiantes? -->
+                <div class="flex flex-col">
+                    <label for="recomendacion" class="text-lg text-blue-600 font-semibold">¿Recomendarías este docente a otros estudiantes?</label>
+                    <select id="recomendacion" class="p-2 border-2 border-gray-300 rounded-md">
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <!-- Comentarios adicionales -->
+                <div class="flex flex-col">
+                    <label for="comentarios" class="text-lg text-blue-600 font-semibold">Comentarios adicionales</label>
+                    <textarea id="comentarios" rows="4" class="p-2 border-2 border-gray-300 rounded-md"></textarea>
+                </div>
+                <!-- Botón para enviar la encuesta -->
+                <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+                    Enviar evaluación
+                </button>
+            </form>
+        </section>
+
+        <!-- Sección para mostrar resultados de la encuesta -->
+        <section id="resultados" class="w-full max-w-3xl bg-white p-8 mt-10 rounded-lg shadow-lg hidden">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4 text-center">Resultados de la Evaluación</h2>
+            <p id="resultadoPuntualidad" class="text-lg text-blue-600"></p>
+            <p id="resultadoDominio" class="text-lg text-blue-600"></p>
+            <p id="resultadoMetodologia" class="text-lg text-blue-600"></p>
+            <p id="resultadoComunicacion" class="text-lg text-blue-600"></p>
+            <p id="resultadoDisponibilidad" class="text-lg text-blue-600"></p>
+            <p id="resultadoEvaluacion" class="text-lg text-blue-600"></p>
+            <p id="resultadoRecomendacion" class="text-lg text-blue-600"></p>
+            <p id="resultadoComentario" class="text-lg text-blue-600"></p>
+        </section>
+    </main>
+
+    <!-- Cargar el archivo JS después de Firebase -->
+    <script type="module" src="/JS/encuestadeldocente.js"></script>
+</body>
+
+</html>

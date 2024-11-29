@@ -102,6 +102,7 @@ onSnapshot(collection(db, "docentes"), (querySnapshot) => {
         <td>${doc.data().correo}</td>
         <td><button class="btn btn-danger" onclick="eliminar('${doc.id}')">Eliminar</button></td>
         <td><button class="btn btn-warning" onclick="editar('${doc.id}','${doc.data().first}','${doc.data().last}','${doc.data().born}','${doc.data().correo}')">Editar</button></td>
+        <td><a href="/paginasweb/administradorexamen.html?id=${doc.id}" class="btn btn-info">Ver Perfil</a></td> <!-- Nuevo botón de Ver Perfil -->
       </tr>`;
   });
 });
@@ -119,21 +120,16 @@ window.eliminar = function(id) {
 }
 
 // Función para editar datos del usuario
-// Función para editar datos del usuario
 window.editar = function(id, nombre, apellido, fecha, correo) {
-  // Asignamos los valores a los campos de entrada
   document.getElementById('nombre').value = nombre;
   document.getElementById('apellido').value = apellido;
   document.getElementById('fecha').value = fecha;
   document.getElementById('correo').value = correo;
 
-  // Cambiar el texto del botón a "Actualizar"
   var boton = document.getElementById('boton');
   boton.innerHTML = 'Actualizar';
 
-  // Cambiar la función del botón a actualización
   boton.onclick = function() {
-    // Obtener los nuevos valores de los campos de entrada
     var nuevoNombre = document.getElementById('nombre').value;
     var nuevoApellido = document.getElementById('apellido').value;
     var nuevaFecha = document.getElementById('fecha').value;
@@ -141,7 +137,6 @@ window.editar = function(id, nombre, apellido, fecha, correo) {
 
     var washingtonRef = doc(db, "docentes", id);
 
-    // Actualizar los datos en Firestore
     updateDoc(washingtonRef, {
       first: nuevoNombre,
       last: nuevoApellido,
@@ -151,10 +146,8 @@ window.editar = function(id, nombre, apellido, fecha, correo) {
     .then(() => {
       console.log("Datos actualizados en Firestore");
 
-      // Si el correo ha cambiado, actualizamos también en Firebase Authentication
       const user = auth.currentUser;
       if (user && user.email !== nuevoCorreo) {
-        // Si el correo ha cambiado, actualizamos el correo en Firebase Authentication
         updateEmail(user, nuevoCorreo)
           .then(() => {
             console.log("Correo electrónico actualizado en Firebase Authentication.");
@@ -164,11 +157,9 @@ window.editar = function(id, nombre, apellido, fecha, correo) {
           });
       }
 
-      // Restaurar el botón a "Guardar" después de la actualización
       boton.innerHTML = 'Guardar';
-      boton.onclick = guardar;  // Restablecer la acción original de guardar
+      boton.onclick = guardar;
 
-      // Limpiar los campos (opcional)
       document.getElementById('nombre').value = '';
       document.getElementById('apellido').value = '';
       document.getElementById('fecha').value = '';
