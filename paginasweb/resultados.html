@@ -12,18 +12,20 @@
 <body class="bg-gray-50 min-h-screen flex flex-col">
 
     <!-- Cabecera -->
-    <header class="bg-gray-100 text-white p-6 shadow-lg">
-        <div class="flex items-center justify-between container mx-auto">
-            <div class="flex items-center">
-                <img src="icono.png" alt="Icono del profesor" class="w-14 h-14 rounded-full mr-3">
-                <span id="nombreProfesor" class="text-3xl text-blue-500">Cargando...</span> <!-- Aquí se mostrará el nombre y apellido -->
+    <header class="bg-gray-100 p-4 sm:p-6 shadow-lg">
+        <div class="flex flex-wrap items-center justify-between container mx-auto">
+            <!-- Información del profesor -->
+            <div class="flex items-center mb-4 sm:mb-0">
+                <img src="icono.png" alt="Icono del profesor" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full mr-3">
+                <span id="nombreProfesor" class="text-xl sm:text-3xl text-blue-500">Cargando...</span>
             </div>
-            <!-- Navegación (opcional) -->
-            <nav class="flex flex-col items-center space-y-4">
-                <button id="redirigirBtn" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
+
+            <!-- Navegación -->
+            <nav class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-2 sm:space-y-0">
+                <button id="redirigirBtn" aria-label="Ir a Página Principal" class="bg-white text-blue-600 px-4 sm:px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
                     Ir a Página Principal
                 </button>
-                <button id="cerrarSesionBtn" class="bg-white text-black px-4 py-2 rounded-md hover:bg-red-600 transition duration-200">
+                <button id="cerrarSesionBtn" aria-label="Cerrar sesión" class="bg-white text-black px-3 sm:px-4 py-2 rounded-md hover:bg-red-600 hover:text-white transition duration-200">
                     Cerrar sesión
                 </button>
             </nav>
@@ -31,26 +33,28 @@
     </header>
 
     <!-- Contenedor de los Resultados -->
-    <main class="flex-1 container mx-auto p-6 mt-10">
+    <main class="flex-1 container mx-auto p-4 sm:p-6 mt-6 sm:mt-10 space-y-8">
 
         <!-- Examen Psicológico -->
-        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Resultados Examen Psicológico</h1>
-            <div id="tabla" class="space-y-4">
+        <section class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <h1 class="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 sm:mb-6 text-center">Resultados Examen Psicológico</h1>
+            <div id="tabla" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Los resultados serán insertados aquí dinámicamente -->
             </div>
         </section>
 
         <!-- Examen Físico -->
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Resultados Examen Físico</h1>
-            <div id="tabla2" class="space-y-4">
+        <section class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <h1 class="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 sm:mb-6 text-center">Resultados Examen Físico</h1>
+            <div id="tabla2" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Los resultados serán insertados aquí dinámicamente -->
             </div>
         </section>
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h1 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Resultados Examen sangre</h1>
-            <div id="tabla3" class="space-y-4">
+
+        <!-- Examen de Sangre -->
+        <section class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <h1 class="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 sm:mb-6 text-center">Resultados Examen de Sangre</h1>
+            <div id="tabla3" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Los resultados serán insertados aquí dinámicamente -->
             </div>
         </section>

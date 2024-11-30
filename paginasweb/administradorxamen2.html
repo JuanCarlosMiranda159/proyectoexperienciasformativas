@@ -13,8 +13,8 @@
 
     <!-- Cabecera -->
     <header class="bg-blue-600 text-white w-full p-4 flex justify-between items-center">
-        <div class="flex items-center">
-            <img src="icono.png" alt="Icono del profesor" class="w-10 h-10 rounded-full mr-3">
+        <div class="flex items-center space-x-3">
+            <img src="icono.png" alt="Icono del profesor" class="w-10 h-10 rounded-full">
             <span class="font-bold text-lg">Profesor Juan Carlos Pampamallco</span>
         </div>
         <div class="flex space-x-4">
@@ -22,14 +22,15 @@
                 Examen de Sangre
             </button>
             <button id="examen1" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
-                Examen psicológico
+                Examen Psicológico
+            </button>
+            <button id="dvdocente" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
+                CV Docente
             </button>
             <button id="cerrarSesionBtn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
                 Cerrar sesión
             </button>
-            <button id="dvdocente" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                CV docente
-            </button>
+            
         </div>
     </header>
 
@@ -37,27 +38,27 @@
     <main class="p-6 w-full max-w-4xl">
 
         <!-- Formulario de Examen Médico -->
-        <section class="bg-white p-6 shadow-md rounded-lg mx-auto">
+        <section class="bg-white p-6 shadow-md rounded-lg mx-auto mb-10">
             <h1 class="text-2xl font-bold text-blue-600 text-center mb-6">Agregar Examen Físico</h1>
             <div class="space-y-4">
-                <input type="text" id="nombre" placeholder="Nombre" class="w-full p-3 border rounded">
-                <input type="text" id="apellido" placeholder="Apellido" class="w-full p-3 border rounded">
-                <input type="number" id="edad" placeholder="Edad" class="w-full p-3 border rounded">
-                <input type="text" id="peso" placeholder="Peso (kg)" class="w-full p-3 border rounded">
-                <input type="text" id="valoracionGeneralSalud" placeholder="Valoración General Salud" class="w-full p-3 border rounded">
-                <input type="text" id="medicionParametrosBasicos" placeholder="Medición de Parámetros Básicos" class="w-full p-3 border rounded">
-                <input type="text" id="evaluacionCardiovascular" placeholder="Evaluación Cardiovascular" class="w-full p-3 border rounded">
-                <input type="text" id="examenMuscularArticular" placeholder="Examen Muscular y Articular" class="w-full p-3 border rounded">
-                <input type="text" id="pruebasFlexibilidadEquilibrio" placeholder="Pruebas de Flexibilidad y Equilibrio" class="w-full p-3 border rounded">
-                <input type="text" id="examenPostura" placeholder="Examen de Postura" class="w-full p-3 border rounded">
-                <input type="text" id="evaluacionRespiratoria" placeholder="Evaluación Respiratoria" class="w-full p-3 border rounded">
-                <input type="text" id="examenVisualAuditivo" placeholder="Examen Visual y Auditivo" class="w-full p-3 border rounded">
-                <input type="text" id="examenSaludMental" placeholder="Examen de Salud Mental" class="w-full p-3 border rounded">
-                <input type="text" id="pruebaResistenciaFisica" placeholder="Prueba de Resistencia Física" class="w-full p-3 border rounded">
-                <input type="text" id="analisisHabitosVida" placeholder="Análisis de Hábitos de Vida" class="w-full p-3 border rounded">
-                <input type="text" id="pruebasAdicionales" placeholder="Pruebas Adicionales" class="w-full p-3 border rounded">
+                <input type="text" id="nombre" placeholder="Nombre" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="apellido" placeholder="Apellido" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="number" id="edad" placeholder="Edad" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="peso" placeholder="Peso (kg)" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="valoracionGeneralSalud" placeholder="Valoración General Salud" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="medicionParametrosBasicos" placeholder="Medición de Parámetros Básicos" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="evaluacionCardiovascular" placeholder="Evaluación Cardiovascular" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="examenMuscularArticular" placeholder="Examen Muscular y Articular" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="pruebasFlexibilidadEquilibrio" placeholder="Pruebas de Flexibilidad y Equilibrio" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="examenPostura" placeholder="Examen de Postura" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="evaluacionRespiratoria" placeholder="Evaluación Respiratoria" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="examenVisualAuditivo" placeholder="Examen Visual y Auditivo" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="examenSaludMental" placeholder="Examen de Salud Mental" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="pruebaResistenciaFisica" placeholder="Prueba de Resistencia Física" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="analisisHabitosVida" placeholder="Análisis de Hábitos de Vida" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="pruebasAdicionales" placeholder="Pruebas Adicionales" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                <button class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700 transition" id="boton" onclick="guardar()">Guardar</button>
+                <button class="bg-blue-600 text-white px-6 py-3 rounded w-full hover:bg-blue-700 transition" id="boton" onclick="guardar()">Guardar</button>
             </div>
         </section>
 

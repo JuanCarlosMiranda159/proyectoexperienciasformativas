@@ -5,33 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados Encuesta Docente</title>
+    <!-- Usar la última versión de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/CSS/estilosindedx.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
 </head>
 
-<body class="bg-blue-500">
-    <header class="absolute top-4 left-4">
-        <span id="nombreProfesor" class="text-3xl text-white">Resultados Evaluación Docente</span>
+<body class="bg-blue-500 font-sans antialiased">
+
+    <!-- Cabecera -->
+    <header class="absolute top-4 left-4 z-10">
+        <h1 class="text-3xl text-white font-bold">Resultados Evaluación Docente</h1>
     </header>
 
-    <main class="p-10 bg-blue-100 flex flex-col items-center justify-center">
-        <section class="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg">
-            <h1 class="text-3xl font-bold text-blue-600 mb-6 text-center"></h1>
+    <!-- Contenedor principal -->
+    <main class="p-6 md:p-10 bg-blue-500 flex flex-col items-center justify-center min-h-screen">
+        
+        <!-- Sección de Resultados -->
+        <section class="w-full max-w-4xl bg-white p-8 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-6 text-center">Resultados de la Encuesta</h2>
 
             <div id="resultados">
-                <p id="resultadoPuntualidad" class="text-lg text-blue-600"></p>
-                <p id="resultadoDominio" class="text-lg text-blue-600"></p>
-                <p id="resultadoMetodologia" class="text-lg text-blue-600"></p>
-                <p id="resultadoComunicacion" class="text-lg text-blue-600"></p>
-                <p id="resultadoDisponibilidad" class="text-lg text-blue-600"></p>
-                <p id="resultadoEvaluacion" class="text-lg text-blue-600"></p>
-                <p id="resultadoRecomendacion" class="text-lg text-blue-600"></p>
-                <p id="resultadoComentario" class="text-lg text-blue-600"></p>
+                <p id="resultadoPuntualidad" class="text-lg text-blue-600 mb-2"></p>
+                <p id="resultadoDominio" class="text-lg text-blue-600 mb-2"></p>
+                <p id="resultadoMetodologia" class="text-lg text-blue-600 mb-2"></p>
+                <p id="resultadoComunicacion" class="text-lg text-blue-600 mb-2"></p>
+                <p id="resultadoDisponibilidad" class="text-lg text-blue-600 mb-2"></p>
+                <p id="resultadoEvaluacion" class="text-lg text-blue-600 mb-2"></p>
+                <p id="resultadoRecomendacion" class="text-lg text-blue-600 mb-2"></p>
+                <p id="resultadoComentario" class="text-lg text-blue-600 mb-2"></p>
             </div>
 
-            <button id="cerrarSesionBtn" class="bg-white text-black px-4 py-2 rounded-md hover:bg-red-600 transition duration-200 mt-4">
+            <!-- Botón de cerrar sesión -->
+            <button id="cerrarSesionBtn" class="bg-white text-black px-6 py-3 rounded-md shadow-md hover:bg-red-600 hover:text-white transition duration-200 mt-6 w-full md:w-auto">
                 Cerrar sesión
             </button>
         </section>

@@ -16,23 +16,23 @@
         <div class="flex items-center">
             <img src="icono.png" alt="Icono del profesor" class="w-12 h-12 rounded-full mr-3">
             <span id="nombreProfesor" class="text-3xl text-blue-500">Cargando...</span> <!-- Aquí se mostrará el nombre y apellido -->
-
         </div>
-        <button id="redirigirBtn" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 mt-6 mx-auto block shadow-lg">
-            Ir a Página Principal
-        </button>
-        <button id="cerrarSesionBtn" class="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition duration-300">
-            Cerrar sesión
-        </button>
-        
+        <div class="flex gap-4">
+            <button id="redirigirBtn" class="bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 mt-6 mx-auto block shadow-lg w-full sm:w-auto">
+                Ir a Página Principal
+            </button>
+            <button id="cerrarSesionBtn" class="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition duration-300 w-full sm:w-auto">
+                Cerrar sesión
+            </button>
+        </div>
     </header>
 
     <!-- Contenedor principal -->
-    <main class="p-6 w-full max-w-4xl">
+    <main class="p-6 w-full max-w-4xl md:max-w-3xl lg:max-w-4xl">
 
         <!-- Formulario de Examen Médico -->
         <section class="bg-white p-8 shadow-lg rounded-lg mx-auto mb-10">
-            <h1 class="text-3xl font-semibold text-blue-600 text-center mb-6">Formacion de Docente</h1>
+            <h1 class="text-3xl font-semibold text-blue-600 text-center mb-6">Formación de Docente</h1>
             <div class="space-y-6">
                 <input type="text" id="nombre" placeholder="Nombre" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                 <input type="text" id="apellido" placeholder="Apellido" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
