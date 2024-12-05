@@ -43,12 +43,12 @@ function guardar() {
 }
 
 // Leer documentos y mostrar los detalles del CV
-const tabla = document.getElementById("tabla");
+const tabla5 = document.getElementById("tabla5");
 db.collection("perfildocente1").onSnapshot((querySnapshot) => {
-    tabla.innerHTML = "";  // Limpiar la tabla
+    tabla5.innerHTML = "";  // Limpiar la tabla
     querySnapshot.forEach((doc) => {
         const data = doc.data();
-        tabla.innerHTML += `
+        tabla5.innerHTML += `
             <div class="bg-white p-4 shadow-md rounded-lg">
                 <h3 class="font-bold text-lg">ID: ${doc.id}</h3>
                 <p><strong>Nombre:</strong> ${data.nombre}</p>

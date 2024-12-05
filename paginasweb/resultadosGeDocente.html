@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Examen Médico</title>
+    <link rel="stylesheet" href="/CSS/estilosindedx.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+    <!-- Cabecera -->
+    <header class="bg-gray-100 p-4 sm:p-6 shadow-lg">
+        <div class="flex flex-wrap items-center justify-between container mx-auto">
+            <!-- Información del profesor -->
+            <div class="flex items-center mb-4 sm:mb-0">
+                <img src="icono.png" alt="Icono del profesor" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full mr-3">
+                <span id="nombreProfesor" class="text-xl sm:text-3xl text-blue-500">Cargando...</span>
+            </div>
+
+            <!-- Navegación -->
+            <nav class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-2 sm:space-y-0">
+                <div>docente1</div>
+                <button id="cerrarSesionBtn" aria-label="Cerrar sesión" class="bg-white text-black px-3 sm:px-4 py-2 rounded-md hover:bg-red-600 hover:text-white transition duration-200">
+                    Cerrar sesión
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor de los Resultados -->
+    <main class="flex-1 container mx-auto p-4 sm:p-6 mt-6 sm:mt-10 space-y-8">
+
+        <!-- Examen Psicológico -->
+        <section class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <h1 class="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 sm:mb-6 text-center">Resultados Examen Psicológico</h1>
+            <div id="tabla" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Los resultados serán insertados aquí dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Examen Físico -->
+        <section class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <h1 class="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 sm:mb-6 text-center">Resultados Examen Físico</h1>
+            <div id="tabla2" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Los resultados serán insertados aquí dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Examen de Sangre -->
+        <section class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <h1 class="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 sm:mb-6 text-center">Resultados Examen de Sangre</h1>
+            <div id="tabla3" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Los resultados serán insertados aquí dinámicamente -->
+            </div>
+        </section>
+        <section class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <h1 class="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 sm:mb-6 text-center">CV docente</h1>
+            <div id="tabla5" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Los resultados serán insertados aquí dinámicamente -->
+            </div>
+        </section>
+       
+
+
+
+    </main>
+
+    <!-- Scripts de Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+    <script type="module" src="/JS/firebaseConfig.js"></script>
+
+    <!-- Importar los scripts de resultados -->
+    <script type="module" src="/JS/resultados.js"></script>
+    <script type="module" src="/JS/resultados2.js"></script>
+    <script type="module" src="/JS/resultados3.js"></script>
+    <script type="module" src="/JS/resultadoscv.js"></script>
+
+</body>
+
+</html>

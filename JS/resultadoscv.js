@@ -11,13 +11,13 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Leer documentos para la tabla de resultados (Perfil Docente)
-const tabla3 = document.getElementById("tabla3");
+const tabla5 = document.getElementById("tabla5");
 
 db.collection("perfildocente1").onSnapshot((querySnapshot) => {
-    tabla3.innerHTML = ""; // Limpiar la tabla antes de agregar los resultados
+    tabla5.innerHTML = ""; // Limpiar la tabla antes de agregar los resultados
     querySnapshot.forEach((doc) => {
         const data = doc.data();
-        tabla3.innerHTML += `
+        tabla5.innerHTML += `
             <div class="bg-white p-4 shadow-md rounded-lg">
                 <h3 class="font-bold text-lg">ID: ${doc.id}</h3>
                 <p><strong>Nombre:</strong> ${data.nombre}</p>
@@ -30,7 +30,7 @@ db.collection("perfildocente1").onSnapshot((querySnapshot) => {
                 <p><strong>Perfil Profesional:</strong> ${data.perfil_profesional}</p>
                 <p><strong>Formación Académica:</strong> ${data.formacion_academica}</p>
                 <p><strong>Experiencia Profesional:</strong> ${data.experiencia_profesional}</p>
-                <p><strong>Habilidades Técnicas:</strong> ${data.habilidades_tecnicas}</p>
+                <p><strong>Habilidades Técnicas:</strong> ${data.habilidades_tecnicas}</p>  
                 <p><strong>Certificaciones:</strong> ${data.certificaciones}</p>
                 <p><strong>Publicaciones:</strong> ${data.publicaciones}</p>
                 <p><strong>Idiomas:</strong> ${data.idiomas}</p>

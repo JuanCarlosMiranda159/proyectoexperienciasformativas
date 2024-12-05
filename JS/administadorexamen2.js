@@ -187,9 +187,9 @@ function editar(id, nombre, apellido, edad, peso, valoracionGeneralSalud,medicio
  const redirigirBtn = document.getElementById('redirigirBtn');
 
  // Añade el evento de clic al botón
- redirigirBtn.addEventListener('click', function () {
+ regresar.addEventListener('click', function () {
      // Redirige a la página deseada cuando el botón es clickeado
-     window.location.href ="/paginasweb/administradorexamen3.html"; 
+     window.location.href ="/paginasweb/verCursoDocente.html"; 
  });
  // Obtén el botón por su ID
  const examen1 = document.getElementById('examen1');

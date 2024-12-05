@@ -90,20 +90,7 @@ function editar(id, nombre, apellido, edad, peso, hemograma, perfil_lipido, gluc
   // Obtén el botón por su ID
   const examenfisico = document.getElementById('examenfisico');
 
-  // Añade el evento de clic al botón
-  examenfisico.addEventListener('click', function () {
-      // Redirige a la página deseada cuando el botón es clickeado
-      window.location.href ="/paginasweb/administradorxamen2.html"; // Aquí pones la URL de la página a la que deseas redirigir
-  });
-   // Obtén el botón por su ID
-   const encuestadeldocente = document.getElementById('encuestadeldocente');
-
-   // Añade el evento de clic al botón
-   encuestadeldocente.addEventListener('click', function () {
-       // Redirige a la página deseada cuando el botón es clickeado
-       window.location.href ="/paginasweb/encuestadeldocente.html"; // Aquí pones la URL de la página a la que deseas redirigir
-   });
-  
-  
- 
- 
+  regresar.addEventListener('click', function () {
+    // Redirige a la página deseada cuando el botón es clickeado
+    window.location.href ="/paginasweb/verCursoDocente.html"; 
+});
