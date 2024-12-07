@@ -57,6 +57,12 @@ onSnapshot(collection(db, "docentes"), (querySnapshot) => {
             onclick="verCVDocente('${doc.id}')">
             CV Docente
           </button>
+          <!-- Nuevo botón para ver cursos del docente -->
+          <button 
+            class="px-2 py-1 bg-teal-500 text-white text-sm font-medium rounded hover:bg-teal-600 transition-all"
+            onclick="verCursosDocente('${doc.id}')">
+            Cursos
+          </button>
         </td>
       </tr>`;
   });
@@ -79,7 +85,13 @@ window.verExamen = function(tipoExamen, idDocente) {
 
 // Función para manejar el botón de CV Docente
 window.verCVDocente = function(idDocente) {
-  const url = "/paginasweb/resultadoscv.html?id=${idDocente}";
+  const url = `/paginasweb/carreraprofecional.html?id=${idDocente}`;
+  window.location.href = url;
+};
+
+// Nueva función para manejar el botón "Cursos"
+window.verCursosDocente = function(idDocente) {
+  const url = `/paginasweb/cursoscv.html?id=${idDocente}`; // Aquí rediriges a la página de cursos
   window.location.href = url;
 };
 

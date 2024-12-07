@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisión de Clases</title>
+    <!-- Vincular Tailwind CSS para el diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Vincular Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+</head>
+<body class="font-sans bg-gray-50">
+
+    <div class="max-w-4xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-8">Supervisión de Clases Docente</h1>
+        
+        <!-- Tabla con imagen de los rangos de porcentaje -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">Evaluación de Etapas</h2>
+            <table class="w-full table-auto border-collapse">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 text-left text-gray-600">Inicio (30%)</th>
+                        <th class="px-4 py-2 text-left text-gray-600">Proceso (60%)</th>
+                        <th class="px-4 py-2 text-left text-gray-600">Finalizado (90%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 text-center">
+                            <!-- Imagen representando 30% -->
+                            <img src="path_to_image/start_percentage_image.jpg" alt="Inicio (30%)" class="w-full h-auto">
+                        </td>
+                        <td class="px-4 py-2 text-center">
+                            <!-- Imagen representando 60% -->
+                            <img src="path_to_image/process_percentage_image.jpg" alt="Proceso (60%)" class="w-full h-auto">
+                        </td>
+                        <td class="px-4 py-2 text-center">
+                            <!-- Imagen representando 90% -->
+                            <img src="path_to_image/end_percentage_image.jpg" alt="Finalizado (90%)" class="w-full h-auto">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Formulario para ingresar puntajes y sugerencias -->
+        <div class="space-y-4 mb-8">
+            <h2 class="text-xl font-semibold text-gray-700">Ingrese el Puntaje y Sugerencias del Curso</h2>
+            
+            <!-- Campo para el puntaje del curso -->
+            <div>
+                <label for="curso_puntaje" class="block text-gray-600">Puntaje del Curso</label>
+                <input type="number" id="curso_puntaje" name="curso_puntaje" min="1" max="10" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingrese Puntaje del Curso" oninput="updateCurso()">
+                <p id="curso_puntaje_stage" class="text-gray-600 mt-2"></p>
+            </div>
+
+            <!-- Campo para la sugerencia -->
+            <div>
+                <label for="curso_sugerencia" class="block text-gray-600">Sugerencia para el Curso</label>
+                <textarea id="curso_sugerencia" name="curso_sugerencia" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingrese sugerencia para mejorar el curso"></textarea>
+            </div>
+        </div>
+
+        <!-- Botón de Enviar -->
+        <div class="flex justify-center mb-8">
+            <button type="submit" class="bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-200" onclick="guardar()">Enviar Supervisión</button>
+        </div>
+
+        <!-- Tabla de resultados -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">Resultados de la Evaluación</h2>
+            <table class="w-full table-auto border-collapse">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 text-left text-gray-600">Curso</th>
+                        <th class="px-4 py-2 text-left text-gray-600">Puntaje</th>
+                        <th class="px-4 py-2 text-left text-gray-600">Estado</th>
+                        <th class="px-4 py-2 text-left text-gray-600">Sugerencia</th>
+                    </tr>
+                </thead>
+                <tbody id="resultTableBody">
+                    <!-- Aquí se agregarán los resultados dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyApIC92oXvNBvXEwZhhA_otz9ZSUOg2D7E",
+            authDomain: "gestiondocente-dece4.firebaseapp.com",
+            projectId: "gestiondocente-dece4",
+            storageBucket: "gestiondocente-dece4.appspot.com",
+            messagingSenderId: "891960766782",
+            appId: "1:891960766782:web:35c6c9397772447d2afc6f",
+            measurementId: "G-WETFYZ3PST",
+        };
+        
+        // Inicializar Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Función para actualizar el estado según el puntaje ingresado
+        function updateCurso() {
+            const value = parseInt(document.getElementById('curso_puntaje').value);
+            let estado = '';
+
+            // Lógica para determinar la etapa del curso
+            if (value >= 1 && value <= 3) {
+                estado = 'Curso Iniciado';
+            } else if (value >= 4 && value <= 7) {
+                estado = 'Curso en Proceso';
+            } else if (value >= 8 && value <= 10) {
+                estado = 'Curso Finalizado';
+            }
+
+            // Mostrar estado
+            document.getElementById('curso_puntaje_stage').textContent = `Estado: ${estado}`;
+        }
+
+        // Función para guardar el puntaje, estado y sugerencias en Firebase
+        function guardar() {
+            const puntaje = document.getElementById('curso_puntaje').value;
+            const sugerencia = document.getElementById('curso_sugerencia').value;
+            let estado = '';
+
+            if (puntaje >= 1 && puntaje <= 3) {
+                estado = 'Curso Iniciado';
+            } else if (puntaje >= 4 && puntaje <= 7) {
+                estado = 'Curso en Proceso';
+            } else if (puntaje >= 8 && puntaje <= 10) {
+                estado = 'Curso Finalizado';
+            }
+
+            // Guardar en Firebase
+            db.collection("resultadosCursos").add({
+                nombreCurso: "Curso de Matemáticas", // Puedes cambiar esto según el curso
+                puntaje: puntaje,
+                estado: estado,
+                sugerencia: sugerencia,
+                fecha: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                console.log("Datos guardados en Firebase");
+                leerResultados();
+            }).catch((error) => {
+                console.error("Error al guardar los datos:", error);
+            });
+        }
+
+        // Función para leer y mostrar los resultados desde Firebase
+        function leerResultados() {
+            const resultTableBody = document.getElementById('resultTableBody');
+            resultTableBody.innerHTML = ''; // Limpiar la tabla antes de cargar los nuevos datos
+
+            // Leer los resultados desde Firebase
+            db.collection("resultadosCursos").orderBy("fecha", "desc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    resultTableBody.innerHTML += `
+                        <tr>
+                            <td class="px-4 py-2 text-left">${data.nombreCurso}</td>
+                            <td class="px-4 py-2 text-left">${data.puntaje}</td>
+                            <td class="px-4 py-2 text-left">${data.estado}</td>
+                            <td class="px-4 py-2 text-left">${data.sugerencia}</td>
+                        </tr>
+                    `;
+                });
+            }).catch((error) => {
+                console.error("Error al leer los datos:", error);
+            });
+        }
+
+        // Leer los resultados automáticamente al cargar la página
+        leerResultados();
+    </script>
+
+</body>
+</html>

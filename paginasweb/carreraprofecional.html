@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos Personales</title>
+    <link rel="stylesheet" href="/CSS/estilosindedx.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start">
+
+    <!-- Cabecera -->
+    <header class="bg-blue-600 text-white w-full p-4 flex flex-wrap justify-between items-center">
+        <div class="flex items-center space-x-3 mb-4 md:mb-0">
+            <img src="icono.png" alt="Icono del profesor" class="w-10 h-10 rounded-full">
+            <span class="font-bold text-lg">Profesor Juan Carlos Pampamallco</span>
+        </div>
+        <div class="flex space-x-4 flex-wrap justify-center w-full md:w-auto">
+            <button id="regresar" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">
+                Retroceder Pagina
+              </button>
+            
+            <button id="cerrarSesionBtn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition mb-2 md:mb-0">
+                Cerrar sesión
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="p-6 w-full max-w-4xl">
+
+        <!-- Formulario de Datos Personales -->
+        <section class="bg-white p-6 shadow-md rounded-lg mx-auto">
+            <h1 class="text-2xl font-bold text-blue-600 text-center mb-6">Formulario de Datos Personales</h1>
+            <div class="space-y-4">
+                <input type="text" id="nombre" placeholder="Nombre Completo" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="objetivo_profesional" placeholder="Objetivo Profesional" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="formacion_academica" placeholder="Formación Académica" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="experiencia_laboral" placeholder="Experiencia Laboral" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="habilidades" placeholder="Habilidades" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="logros_reconocimientos" placeholder="Logros y Reconocimientos" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="idiomas" placeholder="Idiomas" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="otros_datos" placeholder="Otros Datos de Interés" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="referencias" placeholder="Referencias" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                <button class="bg-blue-600 text-white px-6 py-3 rounded w-full hover:bg-blue-700 transition" id="boton" onclick="guardar()">Guardar</button>
+            </div>
+        </section>
+
+        <!-- Tabla de Resultados -->
+        <section class="mt-10 bg-white p-6 shadow-md rounded-lg">
+            <h2 class="text-2xl font-bold text-blue-600 text-center mb-6">Resultados</h2>
+            <div id="tabla3" class="space-y-4">
+                <!-- Aquí se mostrarán los resultados dinámicamente -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+    <script src="/JS/relaciongeneral4.js"></script>
+
+</body>
+
+</html>
