@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Docente Previo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center mb-6">Datos Previos del Docente</h1>
+
+        <!-- Formulario para agregar datos previos del docente -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Agregar Datos Previos del Docente</h2>
+            <form id="formDatosPrevios" class="space-y-4">
+                <div>
+                    <label for="nombreDocente" class="block text-gray-700">Nombre:</label>
+                    <input type="text" id="nombreDocente" name="nombreDocente" class="w-full p-2 border border-gray-300 rounded" placeholder="Ingrese el nombre del docente" required>
+                </div>
+                <div>
+                    <label for="formacionAcademica" class="block text-gray-700">Formación Académica:</label>
+                    <input type="text" id="formacionAcademica" name="formacionAcademica" class="w-full p-2 border border-gray-300 rounded" placeholder="Ingrese la formación académica del docente" required>
+                </div>
+                <div>
+                    <label for="experienciaPrevia" class="block text-gray-700">Experiencia Previa:</label>
+                    <input type="text" id="experienciaPrevia" name="experienciaPrevia" class="w-full p-2 border border-gray-300 rounded" placeholder="Ingrese la experiencia previa del docente" required>
+                </div>
+                <div>
+                    <label for="proyectos" class="block text-gray-700">Proyectos Realizados:</label>
+                    <input type="text" id="proyectos" name="proyectos" class="w-full p-2 border border-gray-300 rounded" placeholder="Ingrese proyectos realizados por el docente" required>
+                </div>
+                <!-- Nuevo campo para el método de pago del sueldo -->
+                <div>
+                    <label for="metodoPagoSueldo" class="block text-gray-700">Método de Pago de Sueldo:</label>
+                    <select id="metodoPagoSueldo" name="metodoPagoSueldo" class="w-full p-2 border border-gray-300 rounded" required>
+                        <option value="" disabled selected>Selecciona un método de pago</option>
+                        <option value="BCP (Banco de Crédito del Perú)">BCP (Banco de Crédito del Perú)</option>
+                        <option value="Banco Continental">Banco Continental</option>
+                        <option value="BBVA">BBVA</option>
+                        <option value="Scotiabank">Scotiabank</option>
+                        <option value="Interbank">Interbank</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                        <option value="Cheque">Cheque</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition-all">Guardar Datos</button>
+            </form>
+        </div>
+
+        <!-- Tabla para mostrar los datos previos del docente -->
+        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden mb-8">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2 px-4 border">ID</th>
+                    <th class="py-2 px-4 border">Nombre del Docente</th>
+                    <th class="py-2 px-4 border">Formación Académica</th>
+                    <th class="py-2 px-4 border">Experiencia Previa</th>
+                    <th class="py-2 px-4 border">Proyectos Realizados</th>
+                    <th class="py-2 px-4 border">Método de Pago de Sueldo</th> <!-- Nueva columna -->
+                    <th class="py-2 px-4 border">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaDatosPrevios">
+                <!-- Los datos previos serán cargados dinámicamente desde Firebase -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Script Firebase V8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyApIC92oXvNBvXEwZhhA_otz9ZSUOg2D7E",
+            authDomain: "gestiondocente-dece4.firebaseapp.com",
+            projectId: "gestiondocente-dece4",
+            storageBucket: "gestiondocente-dece4.appspot.com",
+            messagingSenderId: "891960766782",
+            appId: "1:891960766782:web:35c6c9397772447d2afc6f",
+            measurementId: "G-WETFYZ3PST"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Guardar documento con los datos previos, incluyendo el método de pago de sueldo
+        function guardarDatosPrevios() {
+            const data = {
+                nombre: document.getElementById('nombreDocente').value,
+                formacionAcademica: document.getElementById('formacionAcademica').value,
+                experienciaPrevia: document.getElementById('experienciaPrevia').value,
+                proyectos: document.getElementById('proyectos').value,
+                metodoPagoSueldo: document.getElementById('metodoPagoSueldo').value // Guardar el método de pago
+            };
+
+            db.collection("datosPrevios").add(data)
+                .then(() => {
+                    console.log("Datos previos guardados");
+                    limpiarFormulario();
+                })
+                .catch((error) => console.error("Error al guardar datos previos:", error));
+        }
+
+        // Limpiar formulario después de guardar
+        function limpiarFormulario() {
+            document.getElementById('nombreDocente').value = '';
+            document.getElementById('formacionAcademica').value = '';
+            document.getElementById('experienciaPrevia').value = '';
+            document.getElementById('proyectos').value = '';
+            document.getElementById('metodoPagoSueldo').value = '';
+        }
+
+        // Leer documentos de la base de datos
+        const tablaDatosPrevios = document.getElementById("tablaDatosPrevios");
+        db.collection("datosPrevios").onSnapshot((querySnapshot) => {
+            tablaDatosPrevios.innerHTML = "";
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                tablaDatosPrevios.innerHTML += `
+                    <tr>
+                        <td>${doc.id}</td>
+                        <td>${data.nombre}</td>
+                        <td>${data.formacionAcademica}</td>
+                        <td>${data.experienciaPrevia}</td>
+                        <td>${data.proyectos}</td>
+                        <td>${data.metodoPagoSueldo}</td> <!-- Mostrar el método de pago -->
+                        <td>
+                            <button onclick="eliminarDatosPrevios('${doc.id}')">Eliminar</button>
+                            <button onclick="editarDatosPrevios('${doc.id}', '${data.nombre}', '${data.formacionAcademica}', '${data.experienciaPrevia}', '${data.proyectos}', '${data.metodoPagoSueldo}')">Editar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+
+        // Eliminar documento
+        function eliminarDatosPrevios(id) {
+            db.collection("datosPrevios").doc(id).delete()
+                .then(() => {
+                    console.log("Datos previos eliminados");
+                })
+                .catch((error) => console.error("Error al eliminar datos previos:", error));
+        }
+
+        // Editar documento
+        function editarDatosPrevios(id, nombre, formacionAcademica, experienciaPrevia, proyectos, metodoPagoSueldo) {
+            document.getElementById("nombreDocente").value = nombre;
+            document.getElementById("formacionAcademica").value = formacionAcademica;
+            document.getElementById("experienciaPrevia").value = experienciaPrevia;
+            document.getElementById("proyectos").value = proyectos;
+            document.getElementById("metodoPagoSueldo").value = metodoPagoSueldo; // Establecer el método de pago
+
+            const boton = document.getElementById("boton");
+            boton.textContent = "Actualizar";
+
+            boton.onclick = () => {
+                const dataActualizada = {
+                    nombre: document.getElementById('nombreDocente').value,
+                    formacionAcademica: document.getElementById('formacionAcademica').value,
+                    experienciaPrevia: document.getElementById('experienciaPrevia').value,
+                    proyectos: document.getElementById('proyectos').value,
+                    metodoPagoSueldo: document.getElementById('metodoPagoSueldo').value // Actualizar el método de pago
+                };
+
+                db.collection("datosPrevios").doc(id).update(dataActualizada)
+                    .then(() => {
+                        console.log("Datos previos actualizados");
+                        boton.textContent = "Guardar";
+                        limpiarFormulario();
+                    })
+                    .catch((error) => console.error("Error al actualizar datos previos:", error));
+            };
+        }
+
+        // Guardar los datos cuando el formulario es enviado
+        document.getElementById("formDatosPrevios").addEventListener("submit", function(event) {
+            event.preventDefault();
+            guardarDatosPrevios();
+        });
+    </script>
+</body>
+</html>

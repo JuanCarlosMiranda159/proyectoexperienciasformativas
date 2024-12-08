@@ -57,11 +57,23 @@ onSnapshot(collection(db, "docentes"), (querySnapshot) => {
             onclick="verCVDocente('${doc.id}')">
             CV Docente
           </button>
-          <!-- Nuevo botón para ver cursos del docente -->
+          <!-- Nuevo botón para ver Cursos del Docente -->
           <button 
             class="px-2 py-1 bg-teal-500 text-white text-sm font-medium rounded hover:bg-teal-600 transition-all"
             onclick="verCursosDocente('${doc.id}')">
             Cursos
+          </button>
+          <!-- Botón de Feedback -->
+          <button 
+            class="px-2 py-1 bg-yellow-500 text-white text-sm font-medium rounded hover:bg-yellow-600 transition-all"
+            onclick="verFeedbackDocente('${doc.id}')">
+            Feedback
+          </button>
+          <!-- Nuevo botón para ver Experiencia Previa -->
+          <button 
+            class="px-2 py-1 bg-indigo-500 text-white text-sm font-medium rounded hover:bg-indigo-600 transition-all"
+            onclick="verExperienciaPrevia('${doc.id}')">
+            Experiencia Previa
           </button>
         </td>
       </tr>`;
@@ -91,7 +103,19 @@ window.verCVDocente = function(idDocente) {
 
 // Nueva función para manejar el botón "Cursos"
 window.verCursosDocente = function(idDocente) {
-  const url = `/paginasweb/cursoscv.html?id=${idDocente}`; // Aquí rediriges a la página de cursos
+  const url = `/paginasweb/cursoscv.html?id=${idDocente}`;
+  window.location.href = url;
+};
+
+// Nueva función para manejar el botón "Feedback"
+window.verFeedbackDocente = function(idDocente) {
+  const url = `/paginasweb/feedback.html?id=${idDocente}`; // Redirige a la página de Feedback
+  window.location.href = url;
+};
+
+// Nueva función para manejar el botón "Experiencia Previa"
+window.verExperienciaPrevia = function(idDocente) {
+  const url = `/paginasweb/cursosculminados.html?id=${idDocente}`; // Redirige a la página de Experiencia Previa
   window.location.href = url;
 };
 
@@ -99,7 +123,6 @@ window.verCursosDocente = function(idDocente) {
 const regresar1 = document.getElementById('regresar1');
 if (regresar1) {
   regresar1.addEventListener('click', function () {
-    // Redirige a la página deseada cuando el botón es clickeado
     window.location.href = "/paginasweb/cvdocente.html"; 
   });
 } else {
@@ -110,7 +133,6 @@ if (regresar1) {
 const regresar = document.getElementById('regresar');
 if (regresar) {
   regresar.addEventListener('click', function () {
-    // Redirige a la página deseada cuando el botón es clickeado
     window.location.href = "/paginasweb/menuAdministrador.html"; 
   });
 } else {

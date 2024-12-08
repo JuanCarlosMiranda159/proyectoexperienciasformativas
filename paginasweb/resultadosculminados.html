@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Docente</title>
+    <!-- Usar Firebase 9 -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>  
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center mb-6">Datos Previos del Docente</h1>
+        
+        <!-- Tabla para mostrar los datos previos del docente -->
+        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden mb-8">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2 px-4 border">ID</th>
+                    <th class="py-2 px-4 border">Nombre del Docente</th>
+                    <th class="py-2 px-4 border">Formación Académica</th>
+                    <th class="py-2 px-4 border">Experiencia Previa</th>
+                    <th class="py-2 px-4 border">Proyectos Realizados</th>
+                    <th class="py-2 px-4 border">Método de Pago de Sueldo</th> <!-- Nueva columna -->
+                </tr>
+            </thead>
+            <tbody id="tablaDatosPrevios">
+                <!-- Los datos previos serán cargados dinámicamente desde Firebase -->
+            </tbody>
+        </table>
+    </div>
+
+    <script type="module" src="/JS/resultadosCculminados.js"></script>
+</body>
+</html>
